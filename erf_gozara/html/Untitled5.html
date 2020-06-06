@@ -1,0 +1,248 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Untitled5</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-05-20"><meta name="DC.source" content="Untitled5.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Temprature Ti</a></li><li><a href="#3">Seting Parameters</a></li><li><a href="#4">Processing Tempratures</a></li><li><a href="#5">Ploting</a></li><li><a href="#7">Temprature q0</a></li><li><a href="#9">Seting Parameters</a></li><li><a href="#10">Processing Tempratures</a></li><li><a href="#11">Ploting</a></li></ul></div><pre class="codeinput">clear;
+clc;
+close <span class="string">all</span>;
+</pre><h2>Temprature Ti<a name="2"></a></h2><pre class="codeinput"><span class="comment">%function T = Temprature_Ti(x, t alpha, Ti, T0)</span>
+<span class="comment">%    X = x / (2 * sqrt( alpha * t));</span>
+<span class="comment">%    ERF = erf(X);</span>
+<span class="comment">%</span>
+<span class="comment">%    T = ((Ti - T0) * ERF) + T0;</span>
+<span class="comment">%end</span>
+</pre><h2>Seting Parameters<a name="3"></a></h2><pre class="codeinput">xl = [0 : 0.01 : 0.2];
+tl = [0:0.1:30];
+[X, time] = meshgrid(xl, tl);
+
+alpha = 1.4e-5;
+Ti = 35;
+T0 = 250;
+</pre><h2>Processing Tempratures<a name="4"></a></h2><pre class="codeinput">T = zeros(size(X,1), size(X,2));
+
+<span class="keyword">for</span> i = 1:size(X,1)
+    <span class="keyword">for</span> j = 1:size(X,2)
+        t = time(i,j);
+        x = X(i,j);
+        T(i,j) = Temprature_Ti(x, t, alpha, Ti, T0);
+
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><h2>Ploting<a name="5"></a></h2><pre class="codeinput">figure(<span class="string">'Position'</span>, [1 1 1000 600]);
+mesh(time, X, T);
+view(135,35);
+colorbar();
+title(<span class="string">'Temprature according to x &amp; t &amp; T1'</span>);
+xlabel(<span class="string">'Time(s)'</span>);
+ylabel(<span class="string">'X(m)'</span>);
+zlabel(<span class="string">'Temprature(C)'</span>);
+</pre><img vspace="5" hspace="5" src="Untitled5_01.png" style="width:1000px;height:600px;" alt=""> <pre class="codeinput">clear;
+clc;
+close <span class="string">all</span>;
+</pre><h2>Temprature q0<a name="7"></a></h2><pre class="codeinput"><span class="comment">%function T = Temprature_q0(x, t, Ti, q0, A, alpha, k)</span>
+<span class="comment">%    X = x/(2 * sqrt(alpha * t));</span>
+<span class="comment">%    ERF = erf(X);</span>
+<span class="comment">%</span>
+<span class="comment">%    part1 = (2 * q0 * sqrt((alpha * t)/ pi)) / (k * A);</span>
+<span class="comment">%    part2 = exp(-(x^2)/(4 * alpha * t));</span>
+<span class="comment">%</span>
+<span class="comment">%    part3 = (-q0 * x) / (k * A);</span>
+<span class="comment">%    part4 = 1 - ERF;</span>
+<span class="comment">%</span>
+<span class="comment">%    T = (part1 * part2) + (part3 * part4) + Ti;</span>
+<span class="comment">%end</span>
+</pre><h2>Seting Parameters<a name="9"></a></h2><pre class="codeinput">xl = [0 : 0.01 : 0.1];
+tl = [0:0.1:30];
+[X, time] = meshgrid(xl, tl);
+alpha = 1.4e-5;
+Ti = 35;
+k = 45;
+A = 1;
+q0 = 3.25e5;
+</pre><h2>Processing Tempratures<a name="10"></a></h2><pre class="codeinput">T = zeros(size(X,1), size(X,2));
+
+<span class="keyword">for</span> i = 1:size(X,1)
+    <span class="keyword">for</span> j = 1:size(X,2)
+        t = time(i,j);
+        x = X(i,j);
+        T(i,j) = Temprature_q0(x,t,Ti,q0, A, alpha, k );
+
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><h2>Ploting<a name="11"></a></h2><pre class="codeinput">figure(<span class="string">'Position'</span>, [1 1 1000 600]);
+mesh(time, X, T);
+view(145, 45);
+colorbar();
+title(<span class="string">'Temprature according to x &amp; t &amp; q0'</span>);
+xlabel(<span class="string">'Time(s)'</span>);
+ylabel(<span class="string">'X(m)'</span>);
+zlabel(<span class="string">'Temprature(C)'</span>);
+</pre><img vspace="5" hspace="5" src="Untitled5_02.png" style="width:1000px;height:600px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+clear;
+clc;
+close all;
+
+
+%% Temprature Ti
+%function T = Temprature_Ti(x, t alpha, Ti, T0)
+%    X = x / (2 * sqrt( alpha * t));
+%    ERF = erf(X);
+%    
+%    T = ((Ti - T0) * ERF) + T0;
+%end
+%% Seting Parameters
+
+xl = [0 : 0.01 : 0.2];
+tl = [0:0.1:30];
+[X, time] = meshgrid(xl, tl);
+
+alpha = 1.4e-5;
+Ti = 35;
+T0 = 250;
+
+%% Processing Tempratures
+
+T = zeros(size(X,1), size(X,2));
+
+for i = 1:size(X,1)
+    for j = 1:size(X,2)
+        t = time(i,j);
+        x = X(i,j);
+        T(i,j) = Temprature_Ti(x, t, alpha, Ti, T0);
+        
+    end
+end
+
+%% Ploting
+
+figure('Position', [1 1 1000 600]);
+mesh(time, X, T);
+view(135,35);
+colorbar();
+title('Temprature according to x & t & T1');
+xlabel('Time(s)');
+ylabel('X(m)');
+zlabel('Temprature(C)');
+
+
+%% 
+clear;
+clc;
+close all;
+
+%% Temprature q0
+%%
+%function T = Temprature_q0(x, t, Ti, q0, A, alpha, k)
+%    X = x/(2 * sqrt(alpha * t));
+%    ERF = erf(X);
+%   
+%    part1 = (2 * q0 * sqrt((alpha * t)/ pi)) / (k * A);
+%    part2 = exp(-(x^2)/(4 * alpha * t));
+%    
+%    part3 = (-q0 * x) / (k * A);
+%    part4 = 1 - ERF;
+%    
+%    T = (part1 * part2) + (part3 * part4) + Ti;
+%end
+
+
+%% Seting Parameters
+
+xl = [0 : 0.01 : 0.1];
+tl = [0:0.1:30];
+[X, time] = meshgrid(xl, tl);
+alpha = 1.4e-5;
+Ti = 35;
+k = 45;
+A = 1;
+q0 = 3.25e5;
+
+%% Processing Tempratures
+
+T = zeros(size(X,1), size(X,2));
+
+for i = 1:size(X,1)
+    for j = 1:size(X,2)
+        t = time(i,j);
+        x = X(i,j);
+        T(i,j) = Temprature_q0(x,t,Ti,q0, A, alpha, k );
+        
+    end
+end
+
+%% Ploting
+figure('Position', [1 1 1000 600]);
+mesh(time, X, T);
+view(145, 45);
+colorbar();
+title('Temprature according to x & t & q0');
+xlabel('Time(s)');
+ylabel('X(m)');
+zlabel('Temprature(C)');
+##### SOURCE END #####
+--></body></html>
